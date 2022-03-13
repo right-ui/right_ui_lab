@@ -98,6 +98,9 @@ defmodule LabWeb do
       import LabWeb.ErrorHelpers
       import LabWeb.Gettext
       alias LabWeb.Router.Helpers, as: Routes
+
+      use RightUI
+      import LabWeb.PreviewComponent
     end
   end
 
