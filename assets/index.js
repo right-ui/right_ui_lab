@@ -8,4 +8,6 @@ import './lib/tailwind'
 import './lib/phoenix'
 import './lib/phoenix_live_view'
 
+import './lib/preview_component'
+
 import './pages/welcome'
