@@ -44,14 +44,7 @@ module.exports = (_env, { mode }) => {
   process.env.NODE_ENV = mode
 
   const isProd = mode === 'production'
-  return merge([
-    cleanup(),
-    loadJS(isProd),
-    loadCSS(),
-    loadFont(),
-    loadImage(),
-    copyStatic(),
-  ])
+  return merge([cleanup(), loadJS(isProd), loadCSS(), loadFont(), loadImage(), copyStatic()])
 }
 
 function loadJS(isProd) {
@@ -71,10 +64,8 @@ function loadJS(isProd) {
       extensions: ['.js'],
     },
     entry: {
-      app: [].concat(
-        resolveSrc('index.js'),
-        glob.sync(resolveSrc('vendor/**/*.js'))
-      ),
+      app: [].concat(resolveSrc('index.js'), glob.sync(resolveSrc('vendor/**/*.js'))),
+      iframe: resolveSrc('iframe.js'),
     },
     output: {
       filename: '[name].js',

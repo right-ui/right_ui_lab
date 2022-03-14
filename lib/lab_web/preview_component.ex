@@ -13,10 +13,11 @@ defmodule LabWeb.PreviewComponent do
         <h3 class="font-medium text-gray-900 truncate"><%= @title %></h3>
       </div>
       <div class="bg-gray-500 rounded-lg ring-1 ring-gray-900 ring-opacity-5 overflow-hidden">
-        <div class="preview_component_container relative w-full pr-4">
+        <div class="preview_component_container relative min-w-full sm:min-w-[0px] sm:pr-4">
           <iframe
             title={@title}
             aria-label={@title}
+            name={generate_iframe_id()}
             class="preview_component_iframe w-full rounded-lg overflow-hidden sm:rounded-r-none"
             srcdoc={to_srcdoc(assigns)}
           >
@@ -97,11 +98,9 @@ defmodule LabWeb.PreviewComponent do
     <!doctype html>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link
-      phx-track-static
-      rel="stylesheet"
-      href={Routes.static_path(LabWeb.Endpoint, "/assets/app.css")}
-    />
+    <link rel="stylesheet" href={Routes.static_path(LabWeb.Endpoint, "/assets/app.css")} />
+    <script src={Routes.static_path(LabWeb.Endpoint, "/assets/iframe.js")}>
+    </script>
     <body class="antialiased font-sans bg-gray-200 overflow-hidden">
       <div class="bg-gray-100">
         <%= render_slot(@inner_block) %>
@@ -114,5 +113,10 @@ defmodule LabWeb.PreviewComponent do
     html
     |> Phoenix.HTML.html_escape()
     |> Phoenix.HTML.safe_to_string()
+  end
+
+  defp generate_iframe_id() do
+    id = :crypto.strong_rand_bytes(10) |> Base.url_encode64() |> binary_part(0, 10)
+    "iframe-#{id}"
   end
 end

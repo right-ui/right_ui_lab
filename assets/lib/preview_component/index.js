@@ -28,6 +28,28 @@ function ignorePointerEvent(el) {
   }
 }
 
+window.addEventListener(
+  'load',
+  () => {
+    const iframes = document.querySelectorAll('.preview_component_container iframe')
+
+    for (let iframe of iframes) {
+      const iframeHeight = iframe.contentWindow.bodyHeight
+      if (iframeHeight) {
+        iframe.style.height = `${iframeHeight}px`
+      }
+
+      window.addEventListener('message', (e) => {
+        const { type, name, height } = e.data
+        if (type == 'BODY_HEIGHT' && name == iframe.name) {
+          iframe.style.height = `${height}px`
+        }
+      })
+    }
+  },
+  false
+)
+
 document.addEventListener(
   'pointerdown',
   (e) => {
