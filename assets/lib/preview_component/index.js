@@ -16,32 +16,44 @@ function createOnResizeListener(container, resizeStartX, resizeStartWidth) {
   }
 }
 
+function receivePointerEvent(el) {
+  if (el) {
+    el.classList.remove('pointer-events-none')
+  }
+}
+
+function ignorePointerEvent(el) {
+  if (el) {
+    el.classList.add('pointer-events-none')
+  }
+}
+
 document.addEventListener(
   'pointerdown',
   (e) => {
-    if (is_handler(e.target)) {
-      const container = e.target.parentElement
+    if (!is_handler(e.target)) return
 
-      const resizeStartX = e.pageX
-      const resizeStartWidth = container.clientWidth
+    const container = e.target.parentElement
+    const iframeMask = container.querySelector('.preview_component_iframe_mask')
 
-      const onResize = createOnResizeListener(
-        container,
-        resizeStartX,
-        resizeStartWidth
-      )
+    const resizeStartX = e.pageX
+    const resizeStartWidth = container.clientWidth
 
-      const onResizeEnd = (_e) => {
-        document.removeEventListener('pointermove', onResize, false)
-        document.removeEventListener('pointerup', onResizeEnd, false)
-        if (container.clientWidth === container.parentElement.clientWidth) {
-          container.style.width = '100%'
-        }
+    const onResize = createOnResizeListener(container, resizeStartX, resizeStartWidth)
+
+    const onResizeEnd = (_e) => {
+      document.removeEventListener('pointermove', onResize, false)
+      document.removeEventListener('pointerup', onResizeEnd, false)
+
+      ignorePointerEvent(iframeMask)
+      if (container.clientWidth === container.parentElement.clientWidth) {
+        container.style.width = '100%'
       }
-
-      document.addEventListener('pointermove', onResize, false)
-      document.addEventListener('pointerup', onResizeEnd, false)
     }
+
+    receivePointerEvent(iframeMask)
+    document.addEventListener('pointermove', onResize, false)
+    document.addEventListener('pointerup', onResizeEnd, false)
   },
   false
 )
