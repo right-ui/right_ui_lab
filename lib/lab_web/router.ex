@@ -19,7 +19,7 @@ defmodule LabWeb.Router do
 
     get "/", PageController, :index
 
-    live "/layout/container", Layout.ContainerLive
+    get "/layout/container", PreviewLayoutController, :container
   end
 
   # Other scopes may use custom stacks.

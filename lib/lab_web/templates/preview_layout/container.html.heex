@@ -1,0 +1,39 @@
+<h2>Containers</h2>
+
+<div class="space-y-20">
+  <.preview title="Full-width on mobile, constrained with padded content above">
+    <.container class="bg-pink-100">
+      <.box />
+    </.container>
+  </.preview>
+
+  <.preview title="Constrained with padded content">
+    <.container class="bg-pink-100" padding={:always}>
+      <.box />
+    </.container>
+  </.preview>
+
+  <.preview
+    title="Full-width on mobile, constrained to breakpoint with padded content above mobile"
+  >
+    <.container class="bg-pink-100" breakpoint={true}>
+      <.box />
+    </.container>
+  </.preview>
+
+  <.preview title="Constrained to breakpoint with padded content above mobile">
+    <.container class="bg-pink-100" padding={:always} breakpoint={true}>
+      <.box />
+    </.container>
+  </.preview>
+
+  <.preview title="Narrow constrained with padded content">
+    <.container class="bg-pink-100" padding={:always} breakpoint={true}>
+      <div class="bg-white">
+        <div class="max-w-3xl mx-auto">
+          <.box />
+        </div>
+      </div>
+    </.container>
+  </.preview>
+</div>
