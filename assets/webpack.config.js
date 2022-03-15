@@ -44,7 +44,15 @@ module.exports = (_env, { mode }) => {
   process.env.NODE_ENV = mode
 
   const isProd = mode === 'production'
-  return merge([cleanup(), loadJS(isProd), loadCSS(), loadFont(), loadImage(), copyStatic()])
+  return merge([
+    // use composable functions
+    cleanup(),
+    loadJS(isProd),
+    loadCSS(),
+    loadFont(),
+    loadImage(),
+    copyStatic(),
+  ])
 }
 
 function loadJS(isProd) {
@@ -73,12 +81,36 @@ function loadJS(isProd) {
       publicPath: 'auto',
     },
     module: {
+      /**
+       * use @babel/preset-env and @babel/plugin-transform-runtime with the advice from
+       * https://github.com/babel/babel/issues/9853#issuecomment-619587386
+       */
       rules: [
+        // polyfill and transpile app
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [['@babel/preset-env', { useBuiltIns: 'entry', corejs: 3 }]],
+            },
+          },
+        },
+        // transpile deps, and it will use the global polyfill which is added by app
         {
           test: /\.js$/,
           exclude: es5Modules,
           use: {
             loader: 'babel-loader',
+            options: {
+              plugins: [
+                [
+                  '@babel/plugin-transform-runtime',
+                  { absoluteRuntime: true, corejs: false, regenerator: false },
+                ],
+              ],
+            },
           },
         },
       ],
