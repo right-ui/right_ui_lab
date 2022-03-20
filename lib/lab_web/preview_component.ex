@@ -8,17 +8,21 @@ defmodule LabWeb.PreviewComponent do
       |> attr(:title, :string, required: true)
 
     ~H"""
-    <div class="preview_component">
+    <div>
       <div class="flex items-center mb-3 whitespace-nowrap">
         <h3 class="font-medium text-gray-900 truncate"><%= @title %></h3>
       </div>
-      <div class="bg-gray-500 rounded-lg ring-1 ring-gray-900 ring-opacity-5 overflow-hidden">
-        <div class="preview_component_container relative min-w-full sm:min-w-[0px] sm:pr-4">
+      <div
+        class="bg-gray-500 rounded-lg overflow-hidden ring-1 ring-gray-900 ring-opacity-5"
+        x-data="resizableIframe()"
+      >
+        <div class="relative min-w-full sm:min-w-[375px] max-w-full sm:pr-4 bg-white" x-ref="root">
           <iframe
+            x-ref="iframe"
             title={@title}
             aria-label={@title}
             name={generate_iframe_id()}
-            class="preview_component_iframe w-full rounded-lg overflow-hidden sm:rounded-r-none"
+            class="w-full rounded-lg overflow-hidden sm:rounded-r-none"
             srcdoc={to_srcdoc(assigns)}
           >
           </iframe>
@@ -41,18 +45,22 @@ defmodule LabWeb.PreviewComponent do
                   the event is always emitted from current document.
           -->
           <div
-            class="preview_component_iframe_mask
-            hidden absolute opacity-0 inset-0 mr-4 sm:block pointer-events-none"
+            class="hidden absolute opacity-0 inset-0 mr-4 sm:block "
+            :class="{ 'pointer-events-none': !resizing }"
+            x-ref="mask"
           >
           </div>
 
           <div
-            class="preview_component_handler
-          sr-only sm:not-sr-only
-          sm:absolute sm:inset-y-0 sm:right-0 sm:w-4
-          sm:flex sm:items-center
-          sm:border-l sm:bg-gray-100 cursor-[ew-resize]"
+            class="sr-only sm:not-sr-only
+                   sm:absolute sm:inset-y-0 sm:right-0 sm:w-4
+                   sm:flex sm:items-center
+                   sm:border-l sm:bg-gray-100 cursor-[ew-resize]"
+            x-ref="handle"
+            @pointerdown="onResizeStart($event)"
           >
+            <!-- bigger interactive area -->
+            <div class="absolute inset-y-0 -inset-x-2"></div>
             <svg
               aria-hidden="true"
               class="h-4 w-4 text-gray-600 pointer-events-none"
