@@ -111,7 +111,9 @@ defmodule LabWeb.PreviewComponent do
     </script>
     <body class="antialiased font-sans bg-gray-200 overflow-hidden">
       <div class="bg-gray-100">
+        <!-- [component] start -->
         <%= render_slot(@inner_block) %>
+        <!-- [component] end -->
       </div>
     </body>
     """
