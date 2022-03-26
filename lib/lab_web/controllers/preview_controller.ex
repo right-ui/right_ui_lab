@@ -3,6 +3,10 @@ defmodule LabWeb.PreviewController do
 
   def show(conn, %{"path" => path}) do
     template = "#{Enum.join(path, "/")}.html"
-    render(conn, template)
+
+    conn
+    |> assign(:title, Enum.join(path, " / "))
+    |> put_layout("preview.html")
+    |> render(template)
   end
 end
