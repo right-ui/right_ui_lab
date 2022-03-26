@@ -34,3 +34,16 @@ window.addEventListener('load', () => {
 
   resizeObserver.observe(document.body)
 })
+
+document.addEventListener('click', (e) => {
+  const target = e.target
+
+  if (target.tagName === 'A') {
+    console.log('You are clicking', target)
+    return e.preventDefault()
+  }
+})
+
+document.addEventListener('submit', function (e) {
+  e.preventDefault()
+})
