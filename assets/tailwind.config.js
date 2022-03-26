@@ -15,10 +15,11 @@ module.exports = {
         mono: ['JetBrains MonoVariable', ...defaultTheme.fontFamily.mono],
       },
       colors: {
-        primary: colors.rose,
+        primary: colors.teal,
         neutral: colors.slate,
         info: colors.blue,
         success: colors.green,
+        warning: colors.yellow,
         danger: colors.red,
       },
     },
