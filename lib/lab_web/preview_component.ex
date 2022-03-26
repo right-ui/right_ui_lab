@@ -2,10 +2,24 @@ defmodule LabWeb.PreviewComponent do
   use RightUI, :component
   alias LabWeb.Router.Helpers, as: Routes
 
+  def preview_container(assigns) do
+    assigns =
+      assigns
+      |> attr(:inner_block, :slot, required: true)
+      |> attr_done()
+
+    ~H"""
+    <div class="space-y-20">
+      <%= render_slot(@inner_block) %>
+    </div>
+    """
+  end
+
   def preview(assigns) do
     assigns =
       assigns
       |> attr(:title, :string, required: true)
+      |> attr_done()
 
     ~H"""
     <div>
