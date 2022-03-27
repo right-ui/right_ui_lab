@@ -21,6 +21,9 @@ module.exports = {
         success: colors.green,
         warning: colors.yellow,
         danger: colors.red,
+
+        gray: colors.red, // prevent myself from using gray, use neutral instead.
+        grey: colors.red, // prevent myself from using grey, use neutral instead.
       },
     },
   },
