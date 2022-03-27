@@ -24,10 +24,10 @@ defmodule LabWeb.PreviewComponent do
     ~H"""
     <div>
       <div class="flex items-center mb-3 whitespace-nowrap">
-        <h3 class="font-medium text-gray-900 truncate"><%= @title %></h3>
+        <h3 class="font-medium text-neutral-900 truncate"><%= @title %></h3>
       </div>
       <div
-        class="bg-gray-500 rounded-lg overflow-hidden ring-1 ring-gray-900 ring-opacity-5"
+        class="bg-neutral-500 rounded-lg overflow-hidden ring-1 ring-neutral-900 ring-opacity-5"
         x-data="resizableIframe()"
       >
         <div class="relative min-w-full sm:min-w-[375px] max-w-full sm:pr-4 bg-white" x-ref="root">
@@ -69,7 +69,7 @@ defmodule LabWeb.PreviewComponent do
             class="sr-only sm:not-sr-only
                    sm:absolute sm:inset-y-0 sm:right-0 sm:w-4
                    sm:flex sm:items-center
-                   sm:border-l sm:bg-gray-100 cursor-[ew-resize]"
+                   sm:border-l sm:border-neutral-200 sm:bg-neutral-100 cursor-[ew-resize]"
             x-ref="handle"
             @pointerdown="onResizeStart($event)"
           >
@@ -77,7 +77,7 @@ defmodule LabWeb.PreviewComponent do
             <div class="absolute inset-y-0 -inset-x-2"></div>
             <svg
               aria-hidden="true"
-              class="h-4 w-4 text-gray-600 pointer-events-none"
+              class="h-4 w-4 text-neutral-600 pointer-events-none"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -100,7 +100,7 @@ defmodule LabWeb.PreviewComponent do
     <svg
       class={
         merge_class(
-          "border-2 border-dashed border-gray-300 bg-white h-64 w-full text-gray-200",
+          "border-2 border-dashed border-neutral-300 bg-white h-64 w-full text-neutral-200",
           @class
         )
       }
@@ -123,8 +123,8 @@ defmodule LabWeb.PreviewComponent do
     <link rel="stylesheet" href={Routes.static_path(LabWeb.Endpoint, "/assets/app.css")} />
     <script src={Routes.static_path(LabWeb.Endpoint, "/assets/iframe.js")}>
     </script>
-    <body class="antialiased font-sans bg-gray-200 overflow-hidden">
-      <div class="bg-gray-100">
+    <body class="antialiased font-sans bg-neutral-200 overflow-hidden">
+      <div class="bg-neutral-100">
         <!-- [component] start -->
         <%= render_slot(@inner_block) %>
         <!-- [component] end -->
