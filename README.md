@@ -1,10 +1,9 @@
-# Lab
+# RightUI Lab
 
-> For developing and showing RightUI.
+> For developing and previewing [RightUI](https://github.com/right-ui/right_ui).
 
 ## Quick Start
 
-- Install dependencies with `mix setup`
-- Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+1. clone this repo.
+2. clone [RightUI](https://github.com/right-ui/right_ui), and put it at the same level of this repo.
+3. play this repo as a normal Phoneix project.
