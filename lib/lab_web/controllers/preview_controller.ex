@@ -1,6 +1,10 @@
 defmodule LabWeb.PreviewController do
   use LabWeb, :controller
 
+  def index(conn, _params) do
+    render(conn)
+  end
+
   def show(conn, %{"path" => path}) do
     template = "#{Enum.join(path, "/")}.html"
 

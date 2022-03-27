@@ -19,6 +19,7 @@ defmodule LabWeb.Router do
 
     get "/", PageController, :index
 
+    get "/preview", PreviewController, :index
     get "/preview/*path", PreviewController, :show
   end
 
