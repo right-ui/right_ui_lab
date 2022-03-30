@@ -46,6 +46,8 @@ defmodule Lab.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:ecto, "~> 3.7.2"},
+      {:phoenix_ecto, "~> 4.0"},
       {:right_ui, path: "../right_ui"}
     ]
   end
