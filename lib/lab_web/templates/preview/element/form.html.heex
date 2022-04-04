@@ -1,0 +1,33 @@
+<.preview_container>
+  <.preview title="Plain input">
+    <div class="px-4 py-8 bg-white">
+      <.form let={f} for={@changeset} as="user" multipart>
+        <div class="space-y-4">
+          <.input_label form={f} field={:name}>text input</.input_label>
+          <.text_input form={f} field={:name} />
+          <.error form={f} field={:name} />
+
+          <.input_label form={f} field={:email}>email input</.input_label>
+          <.email_input form={f} field={:email} />
+          <.error form={f} field={:email} />
+
+          <.input_label form={f} field={:age}>number input</.input_label>
+          <.number_input form={f} field={:age} />
+          <.error form={f} field={:age} />
+
+          <.input_label form={f} field={:password}>password input</.input_label>
+          <.password_input form={f} field={:password} />
+
+          <.input_label form={f} field={:search}>search input</.input_label>
+          <.search_input form={f} field={:search} value="What is Google?" />
+
+          <.input_label form={f} field={:phone_number}>telephone input</.input_label>
+          <.telephone_input form={f} field={:phone_number} value="13093777777" />
+
+          <.input_label form={f} field={:url}>url input</.input_label>
+          <.url_input form={f} field={:url} value="https://www.google.com" />
+        </div>
+      </.form>
+    </div>
+  </.preview>
+</.preview_container>
