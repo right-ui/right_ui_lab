@@ -18,8 +18,25 @@ defmodule LabWeb.PreviewController do
 
   defp create_changeset_for_previewing_form() do
     data = %{}
-    types = %{name: :string, email: :string, age: :integer}
-    params = %{name: "Charlie Brown", email: "charlie@example.com"}
+
+    types = %{
+      name: :string,
+      email: :string,
+      age: :integer,
+      search: :string,
+      telephone: :string,
+      url: :string,
+      allowed?: :boolean
+    }
+
+    params = %{
+      name: "Charlie Brown",
+      email: "charlie@example.com",
+      search: "What is Google?",
+      telephone: "13093777777",
+      url: "https://www.google.com",
+      allowed?: true
+    }
 
     {data, types}
     |> Ecto.Changeset.cast(params, Map.keys(types))
