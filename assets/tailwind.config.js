@@ -1,5 +1,12 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
+
+const generatePrefixClassPlugin = (prefix) => {
+  return plugin(function ({ addVariant }) {
+    addVariant(prefix, [`.${prefix} &`, `.${prefix}&`])
+  })
+}
 
 module.exports = {
   content: ['../lib/*_web/**/*.*ex', '../../right_ui/**/*.*ex', './{global,lib,pages}/**/*.js'],
@@ -27,5 +34,7 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/line-clamp'),
+    generatePrefixClassPlugin('phx-form-error'),
+    generatePrefixClassPlugin('phx-no-feedback'),
   ],
 }
