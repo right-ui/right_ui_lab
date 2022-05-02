@@ -63,9 +63,10 @@
   <.preview title="form_field">
     <div class="px-4 py-8 bg-white">
       <.form let={f} for={@changeset} as="user" multipart class="space-y-2">
-        <.input_label form={f} field={:name} />
-        <.text_input form={f} field={:name} />
-        <.error form={f} field={:name} />
+        <.form_field type="text_input" form={f} field={:name} />
+        <.form_field type="number_input" form={f} field={:age} />
+        <.form_field type="checkbox" form={f} field={:allowed?} />
+        <.form_field type="select" form={f} field={:animals} options={[:dog, :cat, :pig]} />
       </.form>
     </div>
   </.preview>
