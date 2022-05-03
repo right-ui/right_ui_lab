@@ -98,12 +98,10 @@ defmodule LabWeb.PreviewComponent do
 
     ~H"""
     <svg
-      class={
-        merge_class(
-          "border-2 border-dashed border-neutral-300 bg-white h-64 w-full text-neutral-200",
-          @class
-        )
-      }
+      class={~m(
+        border-2 border-dashed border-neutral-300 bg-white h-64 w-full text-neutral-200
+        #{@class}
+      )}
       preserveAspectRatio="none"
       stroke="currentColor"
       fill="none"
