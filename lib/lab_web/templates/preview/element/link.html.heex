@@ -1,5 +1,5 @@
 <.preview_container>
-  <.preview title="Normal HTML Link">
+  <.preview title="Normal HTML link">
     <div class="py-10 flex justify-center items-center">
       <.link type="a" to="https://example.com">
         Click Me!
@@ -20,6 +20,14 @@
       <.link type="live_redirect" to="https://example.com">
         Redirect Me!
       </.link>
+    </div>
+  </.preview>
+
+  <.preview title="Normal HTML link which open link in new page">
+    <div class="py-10 flex justify-center items-center">
+      <.external_link to="https://example.com" rel="noreferer">
+        Click Me to open link in new page!
+      </.external_link>
     </div>
   </.preview>
 </.preview_container>
