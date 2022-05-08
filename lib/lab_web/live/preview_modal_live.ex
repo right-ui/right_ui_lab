@@ -14,15 +14,15 @@ defmodule LabWeb.PreviewModalLive do
   def render(assigns) do
     ~H"""
     <div>
-      <%= live_patch("Click to open a modal via `live_modal`",
+      <%= live_patch("Click to open a modal via `modal`",
         to: Routes.preview_modal_path(@socket, :popup)
       ) %>
     </div>
 
     <%= if @live_action in [:popup] do %>
-      <.live_modal return_to={Routes.preview_modal_path(@socket, :index)}>
+      <.modal return_to={Routes.preview_modal_path(@socket, :index)}>
         <p class="text-center">Hello World</p>
-      </.live_modal>
+      </.modal>
     <% end %>
     """
   end
