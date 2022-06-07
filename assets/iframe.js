@@ -1,3 +1,6 @@
+import './lib/alpine'
+import './lib/tailwind'
+
 import { ResizeObserver } from 'resize-observer'
 
 function entryHeight(entry) {

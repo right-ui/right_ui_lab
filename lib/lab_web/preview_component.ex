@@ -118,7 +118,7 @@ defmodule LabWeb.PreviewComponent do
     <!doctype html>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="stylesheet" href={Routes.static_path(LabWeb.Endpoint, "/assets/app.css")} />
+    <link rel="stylesheet" href={Routes.static_path(LabWeb.Endpoint, "/assets/iframe.css")} />
     <script src={Routes.static_path(LabWeb.Endpoint, "/assets/iframe.js")}>
     </script>
     <body class="antialiased font-sans bg-neutral-200 overflow-hidden">
