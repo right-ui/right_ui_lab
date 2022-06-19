@@ -24,6 +24,8 @@ defmodule LabWeb.Router do
     live "/preview/modal", PreviewModalLive, :index
     live "/preview/modal/popup", PreviewModalLive, :popup
 
+    live "/preview/toggle", PreviewToggleLive, :index
+
     live "/preview/flash", PreviewFlashLive, :index
 
     get "/preview/*path", PreviewController, :show
